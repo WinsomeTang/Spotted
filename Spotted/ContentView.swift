@@ -5,21 +5,55 @@
 //  Created by Winsome Tang on 2023-11-11.
 //
 
-import SwiftUI
 
+import SwiftUI
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Testing 😡!")
-            Text("why angy?")
+        NavigationView {
+            VStack{
+                Text("Welcome to Spotted!")
+                    .font(.title)
+                    .padding()
+                HStack{
+                    
+                    Spacer()
+
+                    NavigationLink(destination: LogInView()) {
+                        Text("Log In")
+                            .font(.headline)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(20)
+                    }
+
+                    NavigationLink(destination: SignUpView()) {
+                        Text("Sign Up")
+                            .font(.headline)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.green)
+                            .cornerRadius(20)
+                    }
+
+                    Spacer()
+                } //HStack
+                NavigationLink(destination: MapView()) {
+                    Text("View Map")
+                        .font(.headline)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.orange)
+                        .cornerRadius(20)
+                }
+            } //VStack
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
