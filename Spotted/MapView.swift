@@ -9,12 +9,7 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-class Location: ObservableObject, Equatable {
-    static func == (lhs: Location, rhs: Location) -> Bool {
-        lhs.coordinate?.latitude == rhs.coordinate?.latitude &&
-            lhs.coordinate?.longitude == rhs.coordinate?.longitude
-    }
-
+class Location: ObservableObject {
     @Published var coordinate: CLLocationCoordinate2D?
 
     init(coordinate: CLLocationCoordinate2D?) {
@@ -50,23 +45,33 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 }
 
+struct MapItem: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+}
+
 struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    )
+    @State private var position: MapCameraPosition = .region(.init(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)))
 
     var body: some View {
-        Map(coordinateRegion: $region, showsUserLocation: true)
-            .onAppear {
-                updateRegion()
-            }
+        Map(position: $position) {
+            Marker("My Location", coordinate: locationManager.location.coordinate ?? CLLocationCoordinate2D())
+            // Add other map content as needed
+        }
+        .onAppear {
+            // Perform any setup tasks if needed
+            updatePosition()
+        }
+        .onReceive(locationManager.$location) { _ in
+            updatePosition()
+        }
+        .navigationBarTitle("Map")
     }
 
-    private func updateRegion() {
+    private func updatePosition() {
         if let coordinate = locationManager.location.coordinate {
-            region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            position = .region(.init(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)))
         }
     }
 }
