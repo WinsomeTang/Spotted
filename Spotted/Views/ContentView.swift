@@ -46,7 +46,7 @@ struct ContentView: View {
                         .background(Color.orange)
                         .cornerRadius(20)
                 }
-            } //VStack
+            } //VStack            
         }
         .padding()
     }

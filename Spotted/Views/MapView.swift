@@ -29,8 +29,11 @@ struct MapView: View {
             viewModel.updatePosition(coordinate: locationManager.location.coordinate ?? CLLocationCoordinate2D())
         }
         .navigationBarTitle("Map")
+        .navigationBarHidden(true) // Hide the navigation bar
+        .navigationBarBackButtonHidden(true) // Hide the back button
     }
 }
+
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
