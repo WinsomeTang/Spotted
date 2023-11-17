@@ -15,7 +15,6 @@
 		F225CAB82B05465500796623 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB72B05465500796623 /* SignUpView.swift */; };
 		F225CABA2B05466400796623 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB92B05466400796623 /* LogInView.swift */; };
 		F81D77452B05A557006E1B25 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D77442B05A557006E1B25 /* LocationManager.swift */; };
-		F81D77472B05A587006E1B25 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D77462B05A587006E1B25 /* MapViewModel.swift */; };
 		F81D774A2B05A849006E1B25 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D77492B05A849006E1B25 /* AccountView.swift */; };
 		F81D774C2B05A888006E1B25 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D774B2B05A888006E1B25 /* ActivityView.swift */; };
 		F844574E2B0537F200CEA86F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F844574D2B0537F200CEA86F /* FirebaseAnalytics */; };
@@ -58,7 +57,6 @@
 		F225CAB72B05465500796623 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		F225CAB92B05466400796623 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		F81D77442B05A557006E1B25 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		F81D77462B05A587006E1B25 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		F81D77492B05A849006E1B25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F81D774B2B05A888006E1B25 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F84457842B053BA500CEA86F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 		F214114E2B007CC9003090FB /* Spotted */ = {
 			isa = PBXGroup;
 			children = (
-				F81D77482B05A643006E1B25 /* Models */,
 				F225CAB62B05464100796623 /* Views */,
 				F214114F2B007CC9003090FB /* SpottedApp.swift */,
 				F225CA932B05362600796623 /* GoogleService-Info.plist */,
@@ -151,14 +148,6 @@
 				F81D774B2B05A888006E1B25 /* ActivityView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F81D77482B05A643006E1B25 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F81D77462B05A587006E1B25 /* MapViewModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +259,6 @@
 				F21411522B007CC9003090FB /* ContentView.swift in Sources */,
 				F81D774A2B05A849006E1B25 /* AccountView.swift in Sources */,
 				F81D774C2B05A888006E1B25 /* ActivityView.swift in Sources */,
-				F81D77472B05A587006E1B25 /* MapViewModel.swift in Sources */,
 				F84457852B053BA500CEA86F /* MapView.swift in Sources */,
 				F21411502B007CC9003090FB /* SpottedApp.swift in Sources */,
 			);

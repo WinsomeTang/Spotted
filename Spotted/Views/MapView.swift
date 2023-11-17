@@ -8,33 +8,22 @@
 import SwiftUI
 import MapKit
 
-struct MapItem: Identifiable {
-    let id = UUID()
-    let coordinate: CLLocationCoordinate2D
-}
-
 struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
-    @ObservedObject var viewModel = MapViewModel()
-
+    
     var body: some View {
         TabView {
             // Map Tab
-            Map(position: $viewModel.position) {
-                Marker("My Location", coordinate: locationManager.location.coordinate ?? CLLocationCoordinate2D())
-                // Add other map content here
-            }
-            .onAppear {
-                viewModel.updatePosition(coordinate: locationManager.location.coordinate ?? CLLocationCoordinate2D())
-            }
-            .onReceive(locationManager.$location) { _ in
-                viewModel.updatePosition(coordinate: locationManager.location.coordinate ?? CLLocationCoordinate2D())
-            }
-            .navigationBarHidden(true) // Hide the navigation bar
-            .navigationBarBackButtonHidden(true) // Hide the back button
-            .tabItem {
-                Label("Map", systemImage: "map")
-            }
+            Map(coordinateRegion: $locationManager.region, showsUserLocation: true)
+                .navigationBarHidden(true) // Hide the navigation bar
+                .navigationBarBackButtonHidden(true) // Hide the back button
+                .mapStyle(.hybrid)
+                .mapControls {
+                    MapUserLocationButton()
+                }
+                .tabItem {
+                    Label("Map", systemImage: "map")
+                }
 
             // Activity Tab
             ActivityView()
@@ -50,6 +39,8 @@ struct MapView: View {
         }
     }
 }
+
+
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
