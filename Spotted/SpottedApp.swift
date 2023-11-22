@@ -16,11 +16,7 @@ struct SpottedApp: App {
     
   var body: some Scene {
     WindowGroup {
-        ContentView()
-    
-//        TO TEST MAPVIEW
-//        MapView()
-//            .navigationBarTitle("Map")
+        ContentView().environmentObject(LocalSearchService())
     }
   }
 }

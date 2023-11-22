@@ -10,6 +10,8 @@ import MapKit
 final class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     
+    @Published var userLocation: CLLocationCoordinate2D?
+    
     @Published var region = MKCoordinateRegion(
         center: .init(latitude: 37.334_900, longitude: -122.009_020),
         span: .init(latitudeDelta: 0.2, longitudeDelta: 0.2)
@@ -49,12 +51,17 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
-        locations.last.map {
-            region = MKCoordinateRegion(
-                center: $0.coordinate,
-                span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            )
+            locationManager.stopUpdatingLocation()
+            locations.last.map {
+                userLocation = $0.coordinate
+                region = MKCoordinateRegion(
+                    center: userLocation!,
+                    span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                )
+
+                // Notify the LocalSearchService about the updated user location
+                NotificationCenter.default.post(name: Notification.Name("userLocationUpdated"), object: userLocation)
+            }
         }
     }
-}
+

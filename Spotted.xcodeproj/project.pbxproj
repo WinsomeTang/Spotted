@@ -14,6 +14,9 @@
 		F225CA942B05362600796623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F225CA932B05362600796623 /* GoogleService-Info.plist */; };
 		F225CAB82B05465500796623 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB72B05465500796623 /* SignUpView.swift */; };
 		F225CABA2B05466400796623 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB92B05466400796623 /* LogInView.swift */; };
+		F807446C2B0E4B5D00599788 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446B2B0E4B5D00599788 /* Landmark.swift */; };
+		F807446E2B0E4B7400599788 /* LandmarkDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */; };
+		F80744702B0E4BAB00599788 /* LocalSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446F2B0E4BAB00599788 /* LocalSearchService.swift */; };
 		F81D77452B05A557006E1B25 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D77442B05A557006E1B25 /* LocationManager.swift */; };
 		F81D774A2B05A849006E1B25 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D77492B05A849006E1B25 /* AccountView.swift */; };
 		F81D774C2B05A888006E1B25 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D774B2B05A888006E1B25 /* ActivityView.swift */; };
@@ -56,6 +59,9 @@
 		F225CA932B05362600796623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F225CAB72B05465500796623 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		F225CAB92B05466400796623 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		F807446B2B0E4B5D00599788 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailsView.swift; sourceTree = "<group>"; };
+		F807446F2B0E4BAB00599788 /* LocalSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchService.swift; sourceTree = "<group>"; };
 		F81D77442B05A557006E1B25 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F81D77492B05A849006E1B25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F81D774B2B05A888006E1B25 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
@@ -119,12 +125,14 @@
 		F214114E2B007CC9003090FB /* Spotted */ = {
 			isa = PBXGroup;
 			children = (
+				F807446A2B0E4B5100599788 /* Models */,
 				F225CAB62B05464100796623 /* Views */,
 				F214114F2B007CC9003090FB /* SpottedApp.swift */,
 				F225CA932B05362600796623 /* GoogleService-Info.plist */,
 				F21411532B007CCE003090FB /* Assets.xcassets */,
 				F21411552B007CCE003090FB /* Preview Content */,
 				F81D77442B05A557006E1B25 /* LocationManager.swift */,
+				F807446F2B0E4BAB00599788 /* LocalSearchService.swift */,
 			);
 			path = Spotted;
 			sourceTree = "<group>";
@@ -146,8 +154,17 @@
 				F225CAB92B05466400796623 /* LogInView.swift */,
 				F81D77492B05A849006E1B25 /* AccountView.swift */,
 				F81D774B2B05A888006E1B25 /* ActivityView.swift */,
+				F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F807446A2B0E4B5100599788 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F807446B2B0E4B5D00599788 /* Landmark.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,9 +273,12 @@
 				F225CABA2B05466400796623 /* LogInView.swift in Sources */,
 				F225CAB82B05465500796623 /* SignUpView.swift in Sources */,
 				F81D77452B05A557006E1B25 /* LocationManager.swift in Sources */,
+				F807446E2B0E4B7400599788 /* LandmarkDetailsView.swift in Sources */,
 				F21411522B007CC9003090FB /* ContentView.swift in Sources */,
 				F81D774A2B05A849006E1B25 /* AccountView.swift in Sources */,
+				F807446C2B0E4B5D00599788 /* Landmark.swift in Sources */,
 				F81D774C2B05A888006E1B25 /* ActivityView.swift in Sources */,
+				F80744702B0E4BAB00599788 /* LocalSearchService.swift in Sources */,
 				F84457852B053BA500CEA86F /* MapView.swift in Sources */,
 				F21411502B007CC9003090FB /* SpottedApp.swift in Sources */,
 			);
