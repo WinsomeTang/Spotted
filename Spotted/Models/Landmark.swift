@@ -13,8 +13,12 @@ struct Landmark: Identifiable, Hashable {
     
     let id = UUID()
     
-    init(placemark: MKPlacemark? = nil) {
+    let searchQuery: String?
+
+    
+    init(placemark: MKPlacemark? = nil, searchQuery: String? = nil) {
         self.placemark = placemark
+        self.searchQuery = searchQuery
     }
     
     var name: String {

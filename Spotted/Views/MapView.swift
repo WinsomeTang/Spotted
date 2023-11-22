@@ -11,29 +11,21 @@ import MapKit
 struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
     @EnvironmentObject var localSearchService: LocalSearchService
-    @State private var showDetails: [UUID: Bool] = [:]
+    @State private var selectedLandmark: Landmark?
 
     var body: some View {
         TabView {
             // Map Tab
             Map(coordinateRegion: $locationManager.region, showsUserLocation: true, annotationItems: localSearchService.landmarks) { landmark in
                 MapAnnotation(coordinate: landmark.coordinate) {
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(localSearchService.isPresented ? .purple : .red)
-                        .scaleEffect(localSearchService.isPresented ? 2 : 1)
+                    MarkerImage(landmark: landmark)
                         .onTapGesture {
-                            showDetails[landmark.id, default: false] = true
-                        }
-                        .sheet(isPresented: Binding(
-                            get: { showDetails[landmark.id, default: false] },
-                            set: { showDetails[landmark.id] = $0 }
-                        )) {
-                            LandmarkDetailsView(landmark: landmark)
+                            selectedLandmark = landmark
                         }
                 }
             }
-            .navigationBarHidden(true) // Hide the navigation bar
-            .navigationBarBackButtonHidden(true) // Hide the back button
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
             .mapStyle(.hybrid)
             .mapControls {
                 MapUserLocationButton()
@@ -53,10 +45,35 @@ struct MapView: View {
                     Label("Account", systemImage: "person")
                 }
         }
+        .sheet(item: $selectedLandmark) { landmark in
+            LandmarkDetailsView(landmark: landmark)
+        }
     }
 }
 
+struct MarkerImage: View {
+    var landmark: Landmark
 
+    var body: some View {
+        let markerImage: Image
+
+        switch landmark.searchQuery?.lowercased() {
+        case "pet park":
+            markerImage = Image(uiImage: UIImage(named: "pet-park-marker") ?? UIImage(systemName: "tree.fill")!)
+        case "pet hospital":
+            markerImage = Image(uiImage: UIImage(named: "pet-hospital-marker") ?? UIImage(systemName: "cross.fill")!)
+        case "pet store":
+            markerImage = Image(uiImage: UIImage(named: "pet-store-marker") ?? UIImage(systemName: "storefront.fill")!)
+        default:
+            markerImage = Image(systemName: "heart.fill")
+        }
+
+        return markerImage
+            .resizable()
+            .scaledToFit()
+            .frame(width: 30, height: 30) // Adjust the size as needed
+    }
+}
 
 
 struct MapView_Previews: PreviewProvider {

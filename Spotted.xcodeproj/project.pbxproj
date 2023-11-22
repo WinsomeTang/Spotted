@@ -48,6 +48,9 @@
 		F84457802B0537F200CEA86F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F844577F2B0537F200CEA86F /* FirebaseStorage */; };
 		F84457822B0537F200CEA86F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F84457812B0537F200CEA86F /* FirebaseStorageCombine-Community */; };
 		F84457852B053BA500CEA86F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84457842B053BA500CEA86F /* MapView.swift */; };
+		F880D31D2B0E72A400BB16A4 /* pet-hospital-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31A2B0E72A400BB16A4 /* pet-hospital-marker.png */; };
+		F880D31E2B0E72A400BB16A4 /* pet-park-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */; };
+		F880D31F2B0E72A400BB16A4 /* pet-store-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,9 @@
 		F81D77492B05A849006E1B25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F81D774B2B05A888006E1B25 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F84457842B053BA500CEA86F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		F880D31A2B0E72A400BB16A4 /* pet-hospital-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-hospital-marker.png"; path = "../../../../../../../../Downloads/pet-hospital-marker.png"; sourceTree = "<group>"; };
+		F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-park-marker.png"; path = "../../../../../../../../Downloads/pet-park-marker.png"; sourceTree = "<group>"; };
+		F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-store-marker.png"; path = "../../../../../../../../Downloads/pet-store-marker.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 				F214114F2B007CC9003090FB /* SpottedApp.swift */,
 				F225CA932B05362600796623 /* GoogleService-Info.plist */,
 				F21411532B007CCE003090FB /* Assets.xcassets */,
+				F880D3192B0E728A00BB16A4 /* Markers */,
 				F21411552B007CCE003090FB /* Preview Content */,
 				F81D77442B05A557006E1B25 /* LocationManager.swift */,
 				F807446F2B0E4BAB00599788 /* LocalSearchService.swift */,
@@ -165,6 +172,16 @@
 				F807446B2B0E4B5D00599788 /* Landmark.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F880D3192B0E728A00BB16A4 /* Markers */ = {
+			isa = PBXGroup;
+			children = (
+				F880D31A2B0E72A400BB16A4 /* pet-hospital-marker.png */,
+				F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */,
+				F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */,
+			);
+			path = Markers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +277,9 @@
 				F21411572B007CCE003090FB /* Preview Assets.xcassets in Resources */,
 				F21411542B007CCE003090FB /* Assets.xcassets in Resources */,
 				F225CA942B05362600796623 /* GoogleService-Info.plist in Resources */,
+				F880D31D2B0E72A400BB16A4 /* pet-hospital-marker.png in Resources */,
+				F880D31E2B0E72A400BB16A4 /* pet-park-marker.png in Resources */,
+				F880D31F2B0E72A400BB16A4 /* pet-store-marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

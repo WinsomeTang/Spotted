@@ -32,7 +32,7 @@ class LocalSearchService: ObservableObject {
             NotificationCenter.default.post(name: .userLocationUpdated, object: isPresentedLocal)
         }
     }
-
+    
     
     init() {
         locationManager.userLocationCallback = { [weak self] location in
@@ -76,22 +76,22 @@ class LocalSearchService: ObservableObject {
         }
     }
     
-    // Updated search method to use hardcoded search strings
     private func search(query: String) {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
         request.region = locationManager.region
-        
+
         let search = MKLocalSearch(request: request)
         search.start { response, error in
             DispatchQueue.main.async {
                 if let response = response {
                     let mapItems = response.mapItems
                     self.landmarks.append(contentsOf: mapItems.map {
-                        Landmark(placemark: $0.placemark)
+                        Landmark(placemark: $0.placemark, searchQuery: query)
                     })
                 }
             }
         }
     }
 }
+
