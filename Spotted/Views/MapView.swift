@@ -26,7 +26,7 @@ struct MapView: View {
             }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-            .mapStyle(.hybrid)
+//            .mapStyle(.hybrid)
             .mapControls {
                 MapUserLocationButton()
             }
