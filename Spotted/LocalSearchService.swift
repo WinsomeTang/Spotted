@@ -23,39 +23,53 @@ class LocalSearchService: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     @Published var landmarks: [Landmark] = []
     @Published var landmark: Landmark?
+    @Published private var isPresentedLocal: Bool = false
+    
+    var isPresented: Bool {
+        get { isPresentedLocal }
+        set {
+            isPresentedLocal = newValue
+            NotificationCenter.default.post(name: .userLocationUpdated, object: isPresentedLocal)
+        }
+    }
+
     
     init() {
-        NotificationCenter.default.publisher(for: Notification.Name("userLocationUpdated"))
+        locationManager.userLocationCallback = { [weak self] location in
+            self?.updateAnnotations(with: location)
+        }
+        
+        NotificationCenter.default.publisher(for: .userLocationUpdated)
             .sink { [weak self] _ in
-                self?.updateAnnotations(with: self?.locationManager.userLocation)
+                self?.updateAnnotations(with: self?.locationManager.userLocationLocal)
             }
             .store(in: &cancellables)
-
+        
         // Hardcoded search strings
         let searchStrings = ["pet store", "pet park", "pet hospital"]
-
+        
         // Perform searches for each hardcoded string
         searchStrings.forEach { searchString in
             search(query: searchString)
         }
-
+        
         // Initial search
-        updateAnnotations(with: locationManager.userLocation)
+        updateAnnotations(with: locationManager.userLocationLocal)
     }
     
     private func updateAnnotations(with location: CLLocationCoordinate2D?) {
         guard let userLocation = location else {
             return
         }
-
+        
         region.center = userLocation
-
+        
         // Clear existing landmarks
         landmarks.removeAll()
-
+        
         // Hardcoded search strings
         let searchStrings = ["pet store", "pet park", "pet hospital"]
-
+        
         // Perform searches for each hardcoded string
         searchStrings.forEach { searchString in
             search(query: searchString)

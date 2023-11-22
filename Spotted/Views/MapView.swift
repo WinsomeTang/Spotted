@@ -16,11 +16,11 @@ struct MapView: View {
     var body: some View {
         TabView {
             // Map Tab
-            Map(coordinateRegion: $localSearchService.region, showsUserLocation: true, annotationItems: localSearchService.landmarks) { landmark in
+            Map(coordinateRegion: $locationManager.region, showsUserLocation: true, annotationItems: localSearchService.landmarks) { landmark in
                 MapAnnotation(coordinate: landmark.coordinate) {
                     Image(systemName: "heart.fill")
-                        .foregroundColor(localSearchService.landmark == landmark ? .purple: .red)
-                        .scaleEffect(localSearchService.landmark == landmark ? 2: 1)
+                        .foregroundColor(localSearchService.isPresented ? .purple : .red)
+                        .scaleEffect(localSearchService.isPresented ? 2 : 1)
                         .onTapGesture {
                             showDetails[landmark.id, default: false] = true
                         }
