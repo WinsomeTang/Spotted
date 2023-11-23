@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F209F7A62B0F08C6001BC092 /* PetOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209F7A52B0F08C6001BC092 /* PetOwner.swift */; };
+		F209F7A92B0F093F001BC092 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209F7A82B0F093F001BC092 /* AuthViewModel.swift */; };
 		F21411502B007CC9003090FB /* SpottedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214114F2B007CC9003090FB /* SpottedApp.swift */; };
 		F21411522B007CC9003090FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21411512B007CC9003090FB /* ContentView.swift */; };
 		F21411542B007CCE003090FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F21411532B007CCE003090FB /* Assets.xcassets */; };
@@ -48,13 +50,11 @@
 		F84457802B0537F200CEA86F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F844577F2B0537F200CEA86F /* FirebaseStorage */; };
 		F84457822B0537F200CEA86F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F84457812B0537F200CEA86F /* FirebaseStorageCombine-Community */; };
 		F84457852B053BA500CEA86F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84457842B053BA500CEA86F /* MapView.swift */; };
-		F880D31E2B0E72A400BB16A4 /* pet-park-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */; };
-		F880D31F2B0E72A400BB16A4 /* pet-store-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */; };
-		F880D3212B0EE55200BB16A4 /* pet-emergency-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D3202B0EE55200BB16A4 /* pet-emergency-marker.png */; };
-		F880D3232B0EE55700BB16A4 /* pet-clinic-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D3222B0EE55700BB16A4 /* pet-clinic-marker.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F209F7A52B0F08C6001BC092 /* PetOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetOwner.swift; sourceTree = "<group>"; };
+		F209F7A82B0F093F001BC092 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F214114C2B007CC9003090FB /* Spotted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F214114F2B007CC9003090FB /* SpottedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpottedApp.swift; sourceTree = "<group>"; };
 		F21411512B007CC9003090FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,10 +70,6 @@
 		F81D77492B05A849006E1B25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F81D774B2B05A888006E1B25 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F84457842B053BA500CEA86F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-park-marker.png"; path = "../../../../../../../../Downloads/pet-park-marker.png"; sourceTree = "<group>"; };
-		F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-store-marker.png"; path = "../../../../../../../../Downloads/pet-store-marker.png"; sourceTree = "<group>"; };
-		F880D3202B0EE55200BB16A4 /* pet-emergency-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-emergency-marker.png"; path = "../../../../../../../../Downloads/pet-emergency-marker.png"; sourceTree = "<group>"; };
-		F880D3222B0EE55700BB16A4 /* pet-clinic-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-clinic-marker.png"; path = "../../../../../../../../Downloads/pet-clinic-marker.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F209F7A72B0F0915001BC092 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F209F7A82B0F093F001BC092 /* AuthViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F21411432B007CC9003090FB = {
 			isa = PBXGroup;
 			children = (
@@ -133,12 +137,12 @@
 		F214114E2B007CC9003090FB /* Spotted */ = {
 			isa = PBXGroup;
 			children = (
+				F209F7A72B0F0915001BC092 /* ViewModels */,
 				F807446A2B0E4B5100599788 /* Models */,
 				F225CAB62B05464100796623 /* Views */,
 				F214114F2B007CC9003090FB /* SpottedApp.swift */,
 				F225CA932B05362600796623 /* GoogleService-Info.plist */,
 				F21411532B007CCE003090FB /* Assets.xcassets */,
-				F880D3192B0E728A00BB16A4 /* Markers */,
 				F21411552B007CCE003090FB /* Preview Content */,
 				F81D77442B05A557006E1B25 /* LocationManager.swift */,
 				F807446F2B0E4BAB00599788 /* LocalSearchService.swift */,
@@ -172,19 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				F807446B2B0E4B5D00599788 /* Landmark.swift */,
+				F209F7A52B0F08C6001BC092 /* PetOwner.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		F880D3192B0E728A00BB16A4 /* Markers */ = {
-			isa = PBXGroup;
-			children = (
-				F880D3222B0EE55700BB16A4 /* pet-clinic-marker.png */,
-				F880D3202B0EE55200BB16A4 /* pet-emergency-marker.png */,
-				F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */,
-				F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */,
-			);
-			path = Markers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,10 +274,6 @@
 				F21411572B007CCE003090FB /* Preview Assets.xcassets in Resources */,
 				F21411542B007CCE003090FB /* Assets.xcassets in Resources */,
 				F225CA942B05362600796623 /* GoogleService-Info.plist in Resources */,
-				F880D3212B0EE55200BB16A4 /* pet-emergency-marker.png in Resources */,
-				F880D31E2B0E72A400BB16A4 /* pet-park-marker.png in Resources */,
-				F880D31F2B0E72A400BB16A4 /* pet-store-marker.png in Resources */,
-				F880D3232B0EE55700BB16A4 /* pet-clinic-marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +293,9 @@
 				F807446C2B0E4B5D00599788 /* Landmark.swift in Sources */,
 				F81D774C2B05A888006E1B25 /* ActivityView.swift in Sources */,
 				F80744702B0E4BAB00599788 /* LocalSearchService.swift in Sources */,
+				F209F7A62B0F08C6001BC092 /* PetOwner.swift in Sources */,
 				F84457852B053BA500CEA86F /* MapView.swift in Sources */,
+				F209F7A92B0F093F001BC092 /* AuthViewModel.swift in Sources */,
 				F21411502B007CC9003090FB /* SpottedApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,7 +465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spotted/Preview Content\"";
-				DEVELOPMENT_TEAM = ZXSUZ55397;
+				DEVELOPMENT_TEAM = M46W996KF7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spotted/Info.plist;

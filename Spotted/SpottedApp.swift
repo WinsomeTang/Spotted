@@ -11,12 +11,14 @@ import FirebaseCore
 struct SpottedApp: App {
     init(){
         FirebaseApp.configure()
-        print("Configured Firebase! IT WORKSs")
+        print("Configured Firebase! IT WORKS")
     }
+    @StateObject var authViewModel = AuthViewModel()
     
   var body: some Scene {
     WindowGroup {
         ContentView().environmentObject(LocalSearchService())
+            .environmentObject(authViewModel)
     }
   }
 }
