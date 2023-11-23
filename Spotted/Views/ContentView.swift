@@ -8,45 +8,48 @@
 
 import SwiftUI
 struct ContentView: View {
+    @State private var isMapViewActive = false
+
     var body: some View {
-        NavigationView {
-            VStack{
-                Text("Welcome to Spotted!")
-                    .font(.title)
-                    .padding()
-                HStack{
-                    
-                    Spacer()
+        VStack {
+            Text("Welcome to Spotted!")
+                .font(.title)
+                .padding()
 
-                    NavigationLink(destination: LogInView()) {
-                        Text("Log In")
-                            .font(.headline)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.blue)
-                            .cornerRadius(20)
-                    }
+            HStack {
+                Spacer()
 
-                    NavigationLink(destination: SignUpView()) {
-                        Text("Sign Up")
-                            .font(.headline)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.green)
-                            .cornerRadius(20)
-                    }
-
-                    Spacer()
-                } //HStack
-                NavigationLink(destination: MapView()) {
-                    Text("View Map")
+                NavigationLink(destination: LogInView()) {
+                    Text("Log In")
                         .font(.headline)
                         .padding()
                         .foregroundColor(.white)
-                        .background(Color.orange)
+                        .background(Color.blue)
                         .cornerRadius(20)
                 }
-            } //VStack            
+
+                NavigationLink(destination: SignUpView()) {
+                    Text("Sign Up")
+                        .font(.headline)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(20)
+                }
+
+                Spacer()
+            }
+
+            Button("View Map") {
+                isMapViewActive = true
+            }
+            .padding()
+            .background(Color.orange)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            .fullScreenCover(isPresented: $isMapViewActive) {
+                MapView()
+            }
         }
         .padding()
     }
