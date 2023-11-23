@@ -10,12 +10,12 @@ import MapKit
 struct Landmark: Identifiable, Hashable {
     
     let placemark: MKPlacemark?
-    
     let id = UUID()
-    
     let searchQuery: String?
-
     
+    var phoneNumber: String?
+    var websiteURL: URL?
+
     init(placemark: MKPlacemark? = nil, searchQuery: String? = nil) {
         self.placemark = placemark
         self.searchQuery = searchQuery
@@ -31,5 +31,13 @@ struct Landmark: Identifiable, Hashable {
     
     var coordinate: CLLocationCoordinate2D {
         self.placemark?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    }
+    
+    var formattedPhoneNumber: String {
+        return phoneNumber ?? "N/A"
+    }
+
+    var formattedWebsiteURL: String {
+        return websiteURL?.absoluteString ?? "N/A"
     }
 }

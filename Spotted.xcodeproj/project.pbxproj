@@ -48,9 +48,10 @@
 		F84457802B0537F200CEA86F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F844577F2B0537F200CEA86F /* FirebaseStorage */; };
 		F84457822B0537F200CEA86F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F84457812B0537F200CEA86F /* FirebaseStorageCombine-Community */; };
 		F84457852B053BA500CEA86F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84457842B053BA500CEA86F /* MapView.swift */; };
-		F880D31D2B0E72A400BB16A4 /* pet-hospital-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31A2B0E72A400BB16A4 /* pet-hospital-marker.png */; };
 		F880D31E2B0E72A400BB16A4 /* pet-park-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */; };
 		F880D31F2B0E72A400BB16A4 /* pet-store-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */; };
+		F880D3212B0EE55200BB16A4 /* pet-emergency-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D3202B0EE55200BB16A4 /* pet-emergency-marker.png */; };
+		F880D3232B0EE55700BB16A4 /* pet-clinic-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = F880D3222B0EE55700BB16A4 /* pet-clinic-marker.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,9 +70,10 @@
 		F81D77492B05A849006E1B25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F81D774B2B05A888006E1B25 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F84457842B053BA500CEA86F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		F880D31A2B0E72A400BB16A4 /* pet-hospital-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-hospital-marker.png"; path = "../../../../../../../../Downloads/pet-hospital-marker.png"; sourceTree = "<group>"; };
 		F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-park-marker.png"; path = "../../../../../../../../Downloads/pet-park-marker.png"; sourceTree = "<group>"; };
 		F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-store-marker.png"; path = "../../../../../../../../Downloads/pet-store-marker.png"; sourceTree = "<group>"; };
+		F880D3202B0EE55200BB16A4 /* pet-emergency-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-emergency-marker.png"; path = "../../../../../../../../Downloads/pet-emergency-marker.png"; sourceTree = "<group>"; };
+		F880D3222B0EE55700BB16A4 /* pet-clinic-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pet-clinic-marker.png"; path = "../../../../../../../../Downloads/pet-clinic-marker.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +179,8 @@
 		F880D3192B0E728A00BB16A4 /* Markers */ = {
 			isa = PBXGroup;
 			children = (
-				F880D31A2B0E72A400BB16A4 /* pet-hospital-marker.png */,
+				F880D3222B0EE55700BB16A4 /* pet-clinic-marker.png */,
+				F880D3202B0EE55200BB16A4 /* pet-emergency-marker.png */,
 				F880D31B2B0E72A400BB16A4 /* pet-park-marker.png */,
 				F880D31C2B0E72A400BB16A4 /* pet-store-marker.png */,
 			);
@@ -277,9 +280,10 @@
 				F21411572B007CCE003090FB /* Preview Assets.xcassets in Resources */,
 				F21411542B007CCE003090FB /* Assets.xcassets in Resources */,
 				F225CA942B05362600796623 /* GoogleService-Info.plist in Resources */,
-				F880D31D2B0E72A400BB16A4 /* pet-hospital-marker.png in Resources */,
+				F880D3212B0EE55200BB16A4 /* pet-emergency-marker.png in Resources */,
 				F880D31E2B0E72A400BB16A4 /* pet-park-marker.png in Resources */,
 				F880D31F2B0E72A400BB16A4 /* pet-store-marker.png in Resources */,
+				F880D3232B0EE55700BB16A4 /* pet-clinic-marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +455,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mw.Spotted-deployable2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mw.Spotted-deployable";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -485,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mw.Spotted-deployable2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mw.Spotted-deployable";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

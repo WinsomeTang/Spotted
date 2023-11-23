@@ -60,8 +60,10 @@ struct MarkerImage: View {
         switch landmark.searchQuery?.lowercased() {
         case "pet park":
             markerImage = Image(uiImage: UIImage(named: "pet-park-marker") ?? UIImage(systemName: "tree.fill")!)
-        case "pet hospital":
-            markerImage = Image(uiImage: UIImage(named: "pet-hospital-marker") ?? UIImage(systemName: "cross.fill")!)
+        case "pet clinic":
+            markerImage = Image(uiImage: UIImage(named: "pet-clinic-marker") ?? UIImage(systemName: "cross.fill")!)
+        case "pet emergency 24 hours":
+            markerImage = Image(uiImage: UIImage(named: "pet-emergency-marker") ?? UIImage(systemName: "cross.fill")!)
         case "pet store":
             markerImage = Image(uiImage: UIImage(named: "pet-store-marker") ?? UIImage(systemName: "storefront.fill")!)
         default:

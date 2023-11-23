@@ -46,7 +46,7 @@ class LocalSearchService: ObservableObject {
             .store(in: &cancellables)
         
         // Hardcoded search strings
-        let searchStrings = ["pet store", "pet park", "pet hospital"]
+        let searchStrings = ["pet store", "pet park", "pet clinic", "pet emergency 24 hours"]
         
         // Perform searches for each hardcoded string
         searchStrings.forEach { searchString in
@@ -68,8 +68,8 @@ class LocalSearchService: ObservableObject {
         landmarks.removeAll()
         
         // Hardcoded search strings
-        let searchStrings = ["pet store", "pet park", "pet hospital"]
-        
+        let searchStrings = ["pet store", "pet park", "pet clinic", "pet emergency 24 hours"]
+
         // Perform searches for each hardcoded string
         searchStrings.forEach { searchString in
             search(query: searchString)
@@ -94,4 +94,3 @@ class LocalSearchService: ObservableObject {
         }
     }
 }
-
