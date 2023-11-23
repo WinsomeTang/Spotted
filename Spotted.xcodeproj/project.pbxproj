@@ -50,6 +50,7 @@
 		F84457802B0537F200CEA86F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F844577F2B0537F200CEA86F /* FirebaseStorage */; };
 		F84457822B0537F200CEA86F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F84457812B0537F200CEA86F /* FirebaseStorageCombine-Community */; };
 		F84457852B053BA500CEA86F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84457842B053BA500CEA86F /* MapView.swift */; };
+		F85ECB272B0FA779008A1DBB /* LandmarkDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ECB262B0FA779008A1DBB /* LandmarkDetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		F81D77492B05A849006E1B25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F81D774B2B05A888006E1B25 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F84457842B053BA500CEA86F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		F85ECB262B0FA779008A1DBB /* LandmarkDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				F209F7A82B0F093F001BC092 /* AuthViewModel.swift */,
+				F85ECB262B0FA779008A1DBB /* LandmarkDetailsModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F85ECB272B0FA779008A1DBB /* LandmarkDetailsModel.swift in Sources */,
 				F225CABA2B05466400796623 /* LogInView.swift in Sources */,
 				F225CAB82B05465500796623 /* SignUpView.swift in Sources */,
 				F81D77452B05A557006E1B25 /* LocationManager.swift in Sources */,
