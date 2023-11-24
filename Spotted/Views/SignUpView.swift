@@ -59,7 +59,7 @@ struct SignUpView: View {
                         pets.append(Pet(petName: petName, petType: petType))
                     }
                     .padding()
-
+                    
                     NavigationLink(destination: MapView(), isActive: $navigateToMapView) {
                         Button("Get Started!") {
                             navigateToMapView = true
@@ -83,7 +83,7 @@ struct SignUpView: View {
                 if let errorMessage = authViewModel.errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
-                }
+                }//error message
             }
         }
     }

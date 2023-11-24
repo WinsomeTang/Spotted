@@ -8,8 +8,12 @@
 
 import SwiftUI
 struct ContentView: View {
+    
+    //
     @State private var isMapViewActive = false
-
+    @State private var isLogInViewActive = false
+    @State private var isSignUpViewActive = false
+    
     var body: some View {
         VStack {
             Text("Welcome to Spotted!")
@@ -19,24 +23,29 @@ struct ContentView: View {
             HStack {
                 Spacer()
 
-                NavigationLink(destination: LogInView()) {
-                    Text("Log In")
-                        .font(.headline)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(20)
+                Button("Log In"){
+                  isLogInViewActive = true
+                }
+                .font(.headline)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.green)
+                .cornerRadius(20)
+                .fullScreenCover(isPresented: $isLogInViewActive) {
+                    LogInView()
                 }
 
-                NavigationLink(destination: SignUpView()) {
-                    Text("Sign Up")
-                        .font(.headline)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.green)
-                        .cornerRadius(20)
+                Button("Sign Up"){
+                  isSignUpViewActive = true
                 }
-
+                .font(.headline)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(20)
+                .fullScreenCover(isPresented: $isSignUpViewActive) {
+                    SignUpView()
+                }
                 Spacer()
             }
 
