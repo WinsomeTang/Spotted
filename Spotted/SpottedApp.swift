@@ -6,19 +6,23 @@
 //
 import SwiftUI
 import FirebaseCore
+import GooglePlaces
 
 @main
 struct SpottedApp: App {
-    init(){
+    init() {
         FirebaseApp.configure()
-        print("Configured Firebase! IT WORKS")
+        GMSPlacesClient.provideAPIKey("AIzaSyDxULNK8934DpI1H587uIwy3PhK8mDszv8")
+        print("Configured Firebase and Google Places! IT WORKS")
     }
+
     @StateObject var authViewModel = AuthViewModel()
-    
-  var body: some Scene {
-    WindowGroup {
-        ContentView().environmentObject(LocalSearchService())
-            .environmentObject(authViewModel)
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(LocalSearchService())
+                .environmentObject(authViewModel)
+        }
     }
-  }
 }

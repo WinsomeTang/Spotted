@@ -11,6 +11,8 @@ import MapKit
 struct LandmarkDetailsView: View {
     var landmark: Landmark
     @StateObject private var detailsModel = LandmarkDetailsModel()
+    var onLandmarkTapped: (() -> Void)?
+
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -43,6 +45,8 @@ struct LandmarkDetailsView: View {
         .onAppear {
             // Call the function to fetch additional information
             detailsModel.fetchMapItem(for: landmark)
+            // Trigger the callback function when the landmark is tapped
+            onLandmarkTapped?()
         }
     }
 }

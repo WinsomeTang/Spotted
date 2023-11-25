@@ -46,7 +46,10 @@ struct MapView: View {
                 }
         }
         .sheet(item: $selectedLandmark) { landmark in
-            LandmarkDetailsView(landmark: landmark)
+            LandmarkDetailsView(landmark: landmark) {
+                // Callback function to be triggered when the landmark is tapped
+                printURL(for: landmark)
+            }
         }
     }
 }
@@ -76,6 +79,56 @@ struct MarkerImage: View {
             .frame(width: 30, height: 30) // Adjust the size as needed
     }
 }
+
+// Function to print URL with dynamic query based on the tapped landmark
+func printURL(for landmark: Landmark) {
+    // Constructing the query with the name and address
+    let query = "\(landmark.name) \(landmark.placemark?.title ?? "")"
+    
+    // Constructing the URL for the first request
+    let firstURLString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(query)&key=AIzaSyDxULNK8934DpI1H587uIwy3PhK8mDszv8"
+    guard let firstURL = URL(string: firstURLString) else {
+        print("Invalid URL for the first request.")
+        return
+    }
+
+    // Using URLSession for asynchronous network request
+    let task = URLSession.shared.dataTask(with: firstURL) { data, response, error in
+        if let error = error {
+            print("Error fetching data: \(error)")
+            return
+        }
+
+        guard let data = data else {
+            print("No data received.")
+            return
+        }
+
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            if let results = json?["results"] as? [[String: Any]], let firstResult = results.first, let placeID = firstResult["place_id"] as? String {
+                // Use the placeID to construct the URL for the second request
+                let secondURLString = "https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Copening_hours%2Cformatted_address%2Cformatted_phone_number%2Cwebsite%2Curl%2Cphoto&place_id=\(placeID)&key=AIzaSyDxULNK8934DpI1H587uIwy3PhK8mDszv8"
+                guard let secondURL = URL(string: secondURLString) else {
+                    print("Invalid URL for the second request.")
+                    return
+                }
+
+                // Perform the second request and print the JSON response
+                let secondData = try Data(contentsOf: secondURL)
+                let secondJSON = try JSONSerialization.jsonObject(with: secondData, options: [])
+                print(secondJSON)
+            } else {
+                print("Could not extract place_id from the first JSON response.")
+            }
+        } catch {
+            print("Error decoding JSON: \(error)")
+        }
+    }
+
+    task.resume()
+}
+
 
 
 struct MapView_Previews: PreviewProvider {
