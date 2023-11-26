@@ -21,6 +21,7 @@ class AuthViewModel: ObservableObject {
                 self.errorMessage = error.localizedDescription
             } else {
                 // User successfully signed up, now store user and pet info in Firestore
+                print("\(username)\n\(email)\n\(password)\n\(pets)")
                 self.storeUserInformation(username: username, email: email, password: password, pets: pets)
             }
         }

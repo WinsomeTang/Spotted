@@ -68,8 +68,3 @@ struct LogInView_Previews: PreviewProvider {
     }
 }
 
-struct LogInView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInView()
-    }
-}
