@@ -26,17 +26,25 @@ struct LandmarkDetailsView: View {
                     .padding(.bottom, 4)
             }
 
-            Text("Phone: \(detailsModel.phoneNumber ?? "N/A")")
-                .foregroundColor(.secondary)
-                .padding(.bottom, 4)
+            if let phoneNumber = detailsModel.phoneNumber {
+                Button(action: {
+                    if let phoneURL = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(phoneURL) {
+                        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+                    }
+                }) {
+                    Text("Phone: \(phoneNumber)")
+                        .foregroundColor(.blue)
+                        .padding(.bottom, 4)
+                }
+            }
 
             
             Text("Website:")
                 .foregroundColor(.secondary)
 
             if let website = detailsModel.website {
-                Text("\(website)")
-                    .foregroundColor(.secondary)
+                Link(website, destination: URL(string: website)!)
+                    .foregroundColor(.blue)
             }
 
             Text("Opening Hours:")
@@ -58,10 +66,6 @@ struct LandmarkDetailsView: View {
                 Text("Not available")
                     .foregroundColor(.secondary)
             }
-
-
-
-
             Spacer()
         }
         .padding()
