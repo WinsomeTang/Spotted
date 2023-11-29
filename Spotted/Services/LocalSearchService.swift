@@ -91,8 +91,13 @@ class LocalSearchService: ObservableObject {
                 if let response = response {
                     let mapItems = response.mapItems
                     for mapItem in mapItems {
-                        let landmark = Landmark(placemark: mapItem.placemark, searchQuery: query)
-                        let updatedLandmark = self.isOpen24Hours(for: landmark, detailsModel: self.detailsModel)
+                        var landmark = Landmark(placemark: mapItem.placemark, searchQuery: query)
+                        self.detailsModel.fetchDetails(for: landmark) { isOpen24Hours in
+                            DispatchQueue.main.async {
+                                landmark.isOpen24Hours = isOpen24Hours
+                                self.landmarks.append(landmark)
+                            }
+                        }
                     }
                 }
             }
@@ -104,6 +109,7 @@ class LocalSearchService: ObservableObject {
         detailsModel.fetchDetails(for: landmark) { isOpen24Hours in
             DispatchQueue.main.async {
                 updatedLandmark.isOpen24Hours = isOpen24Hours
+                print(updatedLandmark)
                 self.landmarks.append(updatedLandmark)
             }
         }

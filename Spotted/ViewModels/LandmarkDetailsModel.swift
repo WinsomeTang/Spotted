@@ -97,8 +97,9 @@ class LandmarkDetailsModel: ObservableObject {
                                 self.formattedAddress = detailsResponse.result.formatted_address
                                 self.website = detailsResponse.result.website
                                 
-                                let isOpen24Hours = detailsResponse.result.opening_hours?.open_now ?? false
-                                    completion(isOpen24Hours)
+                                let isOpen24Hours = self.weekdayText?.contains(where: { $0.lowercased().contains("open 24 hours") }) ?? false
+                                completion(isOpen24Hours)
+
                             }
                         } catch {
                             print("Error decoding details response: \(error)")

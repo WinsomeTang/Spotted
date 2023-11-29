@@ -72,7 +72,7 @@ struct MarkerImage: View {
         default:
             markerImage = Image(systemName: "heart.fill")
         }
-        
+
         return markerImage
             .resizable()
             .scaledToFit()
