@@ -24,6 +24,8 @@ class LocalSearchService: ObservableObject {
     @Published var landmarks: [Landmark] = []
     @Published var landmark: Landmark?
     @Published private var isPresentedLocal: Bool = false
+    @Published private var detailsModel: LandmarkDetailsModel
+
     
     var isPresented: Bool {
         get { isPresentedLocal }
@@ -35,6 +37,8 @@ class LocalSearchService: ObservableObject {
     
     
     init() {
+        self.detailsModel = LandmarkDetailsModel()
+
         locationManager.userLocationCallback = { [weak self] location in
             self?.updateAnnotations(with: location)
         }
@@ -86,11 +90,26 @@ class LocalSearchService: ObservableObject {
             DispatchQueue.main.async {
                 if let response = response {
                     let mapItems = response.mapItems
-                    self.landmarks.append(contentsOf: mapItems.map {
-                        Landmark(placemark: $0.placemark, searchQuery: query)
-                    })
+                    for mapItem in mapItems {
+                        let landmark = Landmark(placemark: mapItem.placemark, searchQuery: query)
+                        let updatedLandmark = self.isOpen24Hours(for: landmark, detailsModel: self.detailsModel)
+                    }
                 }
             }
         }
     }
+
+    private func isOpen24Hours(for landmark: Landmark, detailsModel: LandmarkDetailsModel) -> Landmark {
+        var updatedLandmark = landmark // Creates a mutable copy
+        detailsModel.fetchDetails(for: landmark) { isOpen24Hours in
+            DispatchQueue.main.async {
+                updatedLandmark.isOpen24Hours = isOpen24Hours
+                self.landmarks.append(updatedLandmark)
+            }
+        }
+        return updatedLandmark
+    }
 }
+
+
+

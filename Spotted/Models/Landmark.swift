@@ -8,31 +8,32 @@
 import MapKit
 
 struct Landmark: Identifiable, Hashable {
-    
-    let placemark: MKPlacemark?
-    let id = UUID()
-    let searchQuery: String?
+    var placemark: MKPlacemark?
+    var id = UUID()
+    var searchQuery: String?
+    var isOpen24Hours: Bool
     
     var phoneNumber: String?
     var websiteURL: URL?
 
-    init(placemark: MKPlacemark? = nil, searchQuery: String? = nil) {
+    init(placemark: MKPlacemark? = nil, searchQuery: String? = nil, isOpen24Hours: Bool = false) {
         self.placemark = placemark
         self.searchQuery = searchQuery
+        self.isOpen24Hours = isOpen24Hours
     }
-    
+
     var name: String {
-        self.placemark?.name ?? ""
+        placemark?.name ?? ""
     }
-    
+
     var title: String {
-        self.placemark?.title ?? ""
+        placemark?.title ?? ""
     }
-    
+
     var coordinate: CLLocationCoordinate2D {
-        self.placemark?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        placemark?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
-    
+
     var formattedPhoneNumber: String {
         return phoneNumber ?? "N/A"
     }

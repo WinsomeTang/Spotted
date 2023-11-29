@@ -21,24 +21,25 @@ class LandmarkDetailsModel: ObservableObject {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = landmark.searchQuery
         request.region = MKCoordinateRegion(center: landmark.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
+
         let search = MKLocalSearch(request: request)
-        
+
         search.start { response, error in
             if let mapItem = response?.mapItems.first {
                 DispatchQueue.main.async {
                     self.mapItem = mapItem
                     self.boundingRegion = MKCoordinateRegion(center: mapItem.placemark.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-                    
+
                     // Fetch additional details
-                    self.fetchDetails(for: landmark)
+                    self.fetchDetails(for: landmark) { _ in }
                 }
             } else if let error = error {
                 print("Error fetching map item: \(error.localizedDescription)")
             }
         }
     }
-    private func fetchDetails(for landmark: Landmark) {
+
+    func fetchDetails(for landmark: Landmark, completion: @escaping (Bool) -> Void) {
         // Constructing the query with the name and address
         let query = "\(landmark.name) \(landmark.placemark?.title ?? "")"
         
@@ -75,11 +76,13 @@ class LandmarkDetailsModel: ObservableObject {
                     URLSession.shared.dataTask(with: secondURL) { secondData, _, secondError in
                         if let secondError = secondError {
                             print("Error fetching details: \(secondError)")
+                            completion(false)
                             return
                         }
 
                         guard let secondData = secondData else {
                             print("No data received for details.")
+                            completion(false)
                             return
                         }
 
@@ -93,9 +96,13 @@ class LandmarkDetailsModel: ObservableObject {
                                 self.phoneNumber = detailsResponse.result.formatted_phone_number
                                 self.formattedAddress = detailsResponse.result.formatted_address
                                 self.website = detailsResponse.result.website
+                                
+                                let isOpen24Hours = detailsResponse.result.opening_hours?.open_now ?? false
+                                    completion(isOpen24Hours)
                             }
                         } catch {
                             print("Error decoding details response: \(error)")
+                            completion(false)
                         }
                     }.resume()
                 } else {
