@@ -13,39 +13,60 @@ struct LandmarkDetailsView: View {
     @StateObject private var detailsModel = LandmarkDetailsModel()
     var onLandmarkTapped: (() -> Void)?
 
-
     var body: some View {
         VStack(alignment: .leading) {
             Text(landmark.name)
                 .font(.title)
                 .padding(.bottom, 8)
+                .multilineTextAlignment(.center)
 
-            if let placemark = landmark.placemark {
-                Text("Address: \(placemark.title ?? "")")
+            if let address = detailsModel.formattedAddress {
+                Text("Address: \(address)")
                     .foregroundColor(.secondary)
                     .padding(.bottom, 4)
             }
 
-            Text("Latitude: \(landmark.coordinate.latitude)")
-                .foregroundColor(.secondary)
-            Text("Longitude: \(landmark.coordinate.longitude)")
-                .foregroundColor(.secondary)
-
-            // Add these sections for phone number and URL
-            Text("Phone: \(detailsModel.mapItem?.phoneNumber ?? "N/A")")
+            Text("Phone: \(detailsModel.phoneNumber ?? "N/A")")
                 .foregroundColor(.secondary)
                 .padding(.bottom, 4)
 
-            Text("Website: \(detailsModel.mapItem?.url?.absoluteString ?? "N/A")")
+            
+            Text("Website:")
                 .foregroundColor(.secondary)
+
+            if let website = detailsModel.website {
+                Text("\(website)")
+                    .foregroundColor(.secondary)
+            }
+
+            Text("Opening Hours:")
+                .font(.headline)
+                .padding(.top, 8)
+
+            if let weekdayText = detailsModel.weekdayText, !weekdayText.isEmpty {
+                ForEach(weekdayText, id: \.self) { text in
+                    if text.lowercased().contains("open 24 hours") {
+                        Text(text)
+                            .foregroundColor(.secondary)
+                            .bold() // Highlight "Open 24 hours" text
+                    } else {
+                        Text(text)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            } else {
+                Text("Not available")
+                    .foregroundColor(.secondary)
+            }
+
+
+
 
             Spacer()
         }
         .padding()
         .onAppear {
-            // Call the function to fetch additional information
             detailsModel.fetchMapItem(for: landmark)
-            // Trigger the callback function when the landmark is tapped
             onLandmarkTapped?()
         }
     }

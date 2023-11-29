@@ -116,8 +116,8 @@ func printURL(for landmark: Landmark) {
 
                 // Perform the second request and print the JSON response
                 let secondData = try Data(contentsOf: secondURL)
-                let secondJSON = try JSONSerialization.jsonObject(with: secondData, options: [])
-                print(secondJSON)
+                let landmarkDetailsJSON = try JSONSerialization.jsonObject(with: secondData, options: [])
+                print(landmarkDetailsJSON)
             } else {
                 print("Could not extract place_id from the first JSON response.")
             }
