@@ -36,6 +36,7 @@ final class LocationManager: NSObject, ObservableObject {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.setup()
+        locationManager.startUpdatingLocation()
     }
     
     func setup() {
@@ -43,12 +44,12 @@ final class LocationManager: NSObject, ObservableObject {
         case .authorizedWhenInUse:
             locationManager.requestLocation()
         case .notDetermined:
-            locationManager.startUpdatingLocation()
             locationManager.requestWhenInUseAuthorization()
         default:
-            break
+            locationManager.startUpdatingLocation()
         }
     }
+
 
     // Function to update userLocation and post notification
     private func updateUserLocation(_ newValue: CLLocationCoordinate2D?) {

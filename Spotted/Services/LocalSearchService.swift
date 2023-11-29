@@ -65,7 +65,7 @@ class LocalSearchService: ObservableObject {
         guard let userLocation = location else {
             return
         }
-        
+                
         region.center = userLocation
         
         // Clear existing landmarks

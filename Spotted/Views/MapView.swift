@@ -12,7 +12,7 @@ struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
     @EnvironmentObject var localSearchService: LocalSearchService
     @State private var selectedLandmark: Landmark?
-
+    
     var body: some View {
         TabView {
             // Map Tab
