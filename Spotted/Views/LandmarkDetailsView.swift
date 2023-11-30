@@ -11,6 +11,7 @@ import MapKit
 struct LandmarkDetailsView: View {
     var landmark: Landmark
     @StateObject private var detailsModel = LandmarkDetailsModel()
+    @State private var showingDirections = false
     var onLandmarkTapped: (() -> Void)?
 
     var body: some View {
@@ -38,7 +39,6 @@ struct LandmarkDetailsView: View {
                 }
             }
 
-            
             Text("Website:")
                 .foregroundColor(.secondary)
 
@@ -66,6 +66,19 @@ struct LandmarkDetailsView: View {
                 Text("Not available")
                     .foregroundColor(.secondary)
             }
+
+            Button(action: {
+                // Navigate to DirectionsView
+                showingDirections = true
+            }) {
+                Text("Directions")
+                    .foregroundColor(.blue)
+                    .padding(.top, 8)
+            }
+            .fullScreenCover(isPresented: $showingDirections) {
+                DirectionsView(destination: landmark)
+            }
+
             Spacer()
         }
         .padding()

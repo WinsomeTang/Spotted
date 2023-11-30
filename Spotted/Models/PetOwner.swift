@@ -34,4 +34,3 @@ struct Pet: Identifiable, Encodable {
     var petName: String
     var petType: PetType
 }
-

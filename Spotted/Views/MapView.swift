@@ -24,6 +24,7 @@ struct MapView: View {
                         }
                 }
             }
+            .ignoresSafeArea()
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
 //            .mapStyle(.hybrid)
