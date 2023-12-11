@@ -10,13 +10,16 @@ import MapKit
 final class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     
-    internal var userLocationLocal: CLLocationCoordinate2D? {
+    var currentLocation: CLLocation!
+    
+    
+    @Published var userLocationLocal: CLLocationCoordinate2D? {
         didSet {
             userLocationCallback?(userLocationLocal)
             
             // Use DispatchQueue.main.async to avoid publishing changes from within view updates
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .userLocationUpdated, object: self.userLocationLocal)
+//                NotificationCenter.default.post(name: .userLocationUpdated, object: self.userLocationLocal)
             }
         }
     }
@@ -37,6 +40,17 @@ final class LocationManager: NSObject, ObservableObject {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.setup()
         locationManager.startUpdatingLocation()
+        
+//        if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//            CLLocationManager.authorizationStatus() == .authorizedAlways) {
+        
+        // Check if the location manager has a location before assigning to currentLocation
+        if let location = locationManager.location {
+            currentLocation = location
+            let longitude = location.coordinate.longitude
+            let latitude = location.coordinate.latitude
+            // Now you can use longitude and latitude as needed
+        }
     }
     
     func setup() {
@@ -52,15 +66,30 @@ final class LocationManager: NSObject, ObservableObject {
 
 
     // Function to update userLocation and post notification
+//    private func updateUserLocation(_ newValue: CLLocationCoordinate2D?) {
+//        isUpdatingLocation = true
+//        userLocationLocal = newValue
+//        region = MKCoordinateRegion(
+//            center: userLocationLocal!,
+//            span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+//        )
+//        isUpdatingLocation = false
+//    }
     private func updateUserLocation(_ newValue: CLLocationCoordinate2D?) {
         isUpdatingLocation = true
-        userLocationLocal = newValue
-        region = MKCoordinateRegion(
-            center: userLocationLocal!,
-            span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        )
+        
+        if let newValue = newValue {
+            userLocationLocal = newValue
+            region = MKCoordinateRegion(
+                center: newValue,
+                span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            )
+        } else {
+             userLocationLocal = CLLocationCoordinate2D(latitude: 37.334_900, longitude: -122.009_020)
+        }
         isUpdatingLocation = false
     }
+
 }
 
 extension LocationManager: CLLocationManagerDelegate {

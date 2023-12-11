@@ -47,7 +47,7 @@ class AuthViewModel: ObservableObject {
 
             if let error = error {
                 strongSelf.errorMessage = error.localizedDescription
-                print("Error: \(strongSelf.errorMessage)")
+                print("Error: \(String(describing: strongSelf.errorMessage))")
                 completion(.failure(error))
             } else {
                 // User successfully logged in

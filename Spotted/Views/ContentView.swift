@@ -5,15 +5,13 @@
 //  Created by Winsome Tang on 2023-11-11.
 //
 
-
 import SwiftUI
 struct ContentView: View {
     
-    //
     @State private var isMapViewActive = false
     @State private var isLogInViewActive = false
     @State private var isSignUpViewActive = false
-    
+        
     var body: some View {
         VStack {
             Text("Welcome to Spotted!")

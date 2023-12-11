@@ -21,7 +21,7 @@ struct SpottedApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(LocalSearchService())
+//                .environmentObject(LocalSearchService())
                 .environmentObject(authViewModel)
         }
     }
