@@ -226,23 +226,31 @@ extension MapView{
     }
 
     
-    func fetchRoute(){
-        if let mapSelection{
+    func fetchRoute() {
+        if let mapSelection {
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: .init(coordinate: locationManager.currentLocation.coordinate))
             request.destination = mapSelection
             
-            Task{
+            Task {
                 let result = try? await MKDirections(request: request).calculate()
                 route = result?.routes.first
                 routeDestination = mapSelection
                 
-                withAnimation(.snappy){
+                withAnimation(.snappy) {
                     routeDisplaying = true
                     showDetails = false
                     
-                    if let rect = route?.polyline.boundingMapRect, routeDisplaying{
-                        cameraPosition = .rect(rect)
+                    if let route = route {
+                        // Create a region that encompasses the entire route
+                        var region = MKCoordinateRegion(route.polyline.boundingMapRect)
+                        
+                        // Adjust the span of the region for padding
+                        region.span.latitudeDelta *= 1.5
+                        region.span.longitudeDelta *= 1.5
+                        
+                        // Set the camera position to the region
+                        cameraPosition = .region(region)
                     }
                 }
             }
