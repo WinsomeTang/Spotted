@@ -18,73 +18,76 @@ struct SignUpView: View {
     @State private var pets: [Pet] = []
 
     @State private var showPetEntry = false
-    @State private var navigateToMapView = false
+    @State private var isMapViewActive = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                if !showPetEntry {
-                    TextField("Username", text: $username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .autocapitalization(.none)
-                        .padding()
-                    TextField("Email", text: $email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .autocapitalization(.none)
-                        .padding()
+        VStack {
+            if !showPetEntry {
+                TextField("Username", text: $username)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
+                    .padding()
+                TextField("Email", text: $email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
+                    .padding()
 
-                    SecureField("Password", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                }
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+            }
 
-                if showPetEntry {
-                    ForEach(pets.indices, id: \.self) { index in
-                        VStack {
-                            TextField("Pet Name", text: $pets[index].petName)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding()
-
-                            Picker("Pet Type", selection: $pets[index].petType) {
-                                ForEach(Pet.PetType.allCases, id: \.self) { type in
-                                    Text(type.rawValue.capitalized)
-                                }
-                            }
-                            .pickerStyle(.wheel)
+            if showPetEntry {
+                ForEach(pets.indices, id: \.self) { index in
+                    VStack {
+                        TextField("Pet Name", text: $pets[index].petName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
-                        }
-                    }
 
-                    Button("Add Pet") {
-                        pets.append(Pet(petName: petName, petType: petType))
-                    }
-                    .padding()
-                    
-                    NavigationLink(destination: MapView(), isActive: $navigateToMapView) {
-                        Button("Get Started!") {
-                            navigateToMapView = true
-                            authViewModel.signUp(username: username, email: email, password: password, pets: pets)
+                        Picker("Pet Type", selection: $pets[index].petType) {
+                            ForEach(Pet.PetType.allCases, id: \.self) { type in
+                                Text(type.rawValue.capitalized)
+                            }
                         }
+                        .pickerStyle(.wheel)
                         .padding()
                     }
-                    .padding()
-                } else {
-                    Button("Next") {
-                        showPetEntry = true
-                    }
-                    .padding()
                 }
 
-                Button("Back") {
-                    showPetEntry = false
+                Button("Add Pet") {
+                    pets.append(Pet(petName: petName, petType: petType))
                 }
                 .padding()
 
-                if let errorMessage = authViewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                }//error message
+                Button("Get Started!") {
+                    authViewModel.signUp(username: username, email: email, password: password, pets: pets)
+                    isMapViewActive = true
+                }
+                .padding()
+            } else {
+                Button("Next") {
+                    if password.count < 6{
+                        authViewModel.errorMessage = "Password must be at least 6 characters long:("
+                    }else{
+                        showPetEntry = true
+                    }
+                }
+                .padding()
             }
+
+            Button("Back") {
+                showPetEntry = false
+                presentationMode.wrappedValue.dismiss()
+            }
+            .padding()
+
+            if let errorMessage = authViewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+            } //error message
+        }
+        .fullScreenCover(isPresented: $isMapViewActive) {
+            MapView()
         }
     }
 }
