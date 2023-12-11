@@ -36,119 +36,132 @@ struct MapView: View {
     @State var camera: MapCameraPosition = .automatic
     
     var body: some View {
-        Map(position: $cameraPosition, selection: $mapSelection) {
-            UserAnnotation()
+        TabView{
+            Map(position: $cameraPosition, selection: $mapSelection) {
+                UserAnnotation()
 
-            ForEach(storeResults, id: \.self) { item in
-                if routeDisplaying, item == routeDestination {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "storefront.fill" ,coordinate: placemark.coordinate)
-                        .tint(.blue)
-                } else if !routeDisplaying {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "storefront.fill" ,coordinate: placemark.coordinate)
-                        .tint(.blue)
-                }
-            }
-            ForEach(parkResults, id: \.self) { item in
-                if routeDisplaying, item == routeDestination {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "tree.fill" ,coordinate: placemark.coordinate)
-                        .tint(.green)
-                } else if !routeDisplaying {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "tree.fill" ,coordinate: placemark.coordinate)
-                        .tint(.green)
-                }
-            }
-            ForEach(clinicResults, id: \.self) { item in
-                if routeDisplaying, item == routeDestination {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "building.fill" ,coordinate: placemark.coordinate)
-                        .tint(.orange)
-                } else if !routeDisplaying {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "building.fill" ,coordinate: placemark.coordinate)
-                        .tint(.orange)
-                }
-            }
-            ForEach(hospitalResults, id: \.self) { item in
-                if routeDisplaying, item == routeDestination {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "cross.fill" ,coordinate: placemark.coordinate)
-                        .tint(.red)
-                } else if !routeDisplaying {
-                    let placemark = item.placemark
-                    Marker(placemark.name ?? "", systemImage: "cross.fill" ,coordinate: placemark.coordinate)
-                        .tint(.red)
-                }
-            }
-
-
-            if let route = route {
-                MapPolyline(route.polyline)
-                    .stroke(.blue, lineWidth: 6)
-            }
-        }
-        .onAppear() {
-            Task { await searchPlaces() }
-        }
-        .onChange(of: getDirections) { oldValue, newValue in
-            if newValue {
-                fetchRoute()
-            }
-        }
-        .onChange(of: mapSelection) { oldValue, newValue in
-            showDetails = newValue != nil
-        }
-        .sheet(isPresented: $showDetails) {
-            LocationDetailsView(mapSelection: $mapSelection,
-                                show: $showDetails,
-                                getDirections: $getDirections)
-                .presentationDetents([.height(340)])
-                .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
-                .presentationCornerRadius(12)
-        }
-        .safeAreaInset(edge: .bottom) {
-            if routeDisplaying {
-                VStack {
-                    HStack {
-                        Text("ETA: \(formattedETA(route?.expectedTravelTime ?? 0))")
-                        Spacer()
-                        Text("Distance: \(formattedDistance(route?.distance ?? 0))")
+                ForEach(storeResults, id: \.self) { item in
+                    if routeDisplaying, item == routeDestination {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "storefront.fill" ,coordinate: placemark.coordinate)
+                            .tint(.blue)
+                    } else if !routeDisplaying {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "storefront.fill" ,coordinate: placemark.coordinate)
+                            .tint(.blue)
                     }
-                    .padding()
+                }
+                ForEach(parkResults, id: \.self) { item in
+                    if routeDisplaying, item == routeDestination {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "tree.fill" ,coordinate: placemark.coordinate)
+                            .tint(.green)
+                    } else if !routeDisplaying {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "tree.fill" ,coordinate: placemark.coordinate)
+                            .tint(.green)
+                    }
+                }
+                ForEach(clinicResults, id: \.self) { item in
+                    if routeDisplaying, item == routeDestination {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "building.fill" ,coordinate: placemark.coordinate)
+                            .tint(.orange)
+                    } else if !routeDisplaying {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "building.fill" ,coordinate: placemark.coordinate)
+                            .tint(.orange)
+                    }
+                }
+                ForEach(hospitalResults, id: \.self) { item in
+                    if routeDisplaying, item == routeDestination {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "cross.fill" ,coordinate: placemark.coordinate)
+                            .tint(.red)
+                    } else if !routeDisplaying {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", systemImage: "cross.fill" ,coordinate: placemark.coordinate)
+                            .tint(.red)
+                    }
+                }
 
-                    Button("End Route") {
-                        withAnimation(.snappy) {
-                            routeDisplaying = false
-                            showDetails = true
-                            getDirections = false
-                            mapSelection = routeDestination
-                            routeDestination = nil
-                            route = nil
-                            cameraPosition = .userLocation(fallback: .automatic)
+
+                if let route = route {
+                    MapPolyline(route.polyline)
+                        .stroke(.blue, lineWidth: 6)
+                }
+            }
+            .onAppear() {
+                Task { await searchPlaces() }
+            }
+            .onChange(of: getDirections) { oldValue, newValue in
+                if newValue {
+                    fetchRoute()
+                }
+            }
+            .onChange(of: mapSelection) { oldValue, newValue in
+                showDetails = newValue != nil
+            }
+            .sheet(isPresented: $showDetails) {
+                LocationDetailsView(mapSelection: $mapSelection,
+                                    show: $showDetails,
+                                    getDirections: $getDirections)
+                    .presentationDetents([.height(340)])
+                    .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                    .presentationCornerRadius(12)
+            }
+            .safeAreaInset(edge: .bottom) {
+                if routeDisplaying {
+                    VStack {
+                        HStack {
+                            Text("ETA: \(formattedETA(route?.expectedTravelTime ?? 0))")
+                            Spacer()
+                            Text("Distance: \(formattedDistance(route?.distance ?? 0))")
                         }
+                        .padding()
+
+                        Button("End Route") {
+                            withAnimation(.snappy) {
+                                routeDisplaying = false
+                                showDetails = true
+                                getDirections = false
+                                mapSelection = routeDestination
+                                routeDestination = nil
+                                route = nil
+                                cameraPosition = .userLocation(fallback: .automatic)
+                            }
+                        }
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(.red.gradient, in: .rect(cornerRadius: 15))
+                        .padding()
                     }
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(.red.gradient, in: .rect(cornerRadius: 15))
+                    .padding(.vertical, 6)
+                    .background(LinearGradient(colors: [.gray, .white], startPoint: .top, endPoint: .bottom), in: .rect(cornerRadius: 15))
                     .padding()
+                    .background(.ultraThinMaterial)
                 }
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 6)
-                .background(LinearGradient(colors: [.gray, .white], startPoint: .top, endPoint: .bottom), in: .rect(cornerRadius: 15))
-                .padding()
-                .background(.ultraThinMaterial)
             }
-        }
 
-        .mapControls {
-            MapUserLocationButton()
-            MapCompass()
-            MapPitchToggle()
+            .mapControls {
+                MapUserLocationButton()
+                MapCompass()
+                MapPitchToggle()
+            }
+            .tabItem {
+                Label("Map", systemImage: "map")
+            }
+            ExpressView()
+                .tabItem{
+                    Label("Express", systemImage: "hare")
+                }
+            AccountView()
+                .tabItem{
+                    Label("Account", systemImage: "person")
+                }
         }
     }
 }
