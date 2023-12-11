@@ -109,27 +109,42 @@ struct MapView: View {
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
         }
-        .safeAreaInset(edge: .bottom){
-            if routeDisplaying{
-                Button("End Route"){
-                    withAnimation(.snappy){
-                        routeDisplaying = false
-                        showDetails = true
-                        getDirections = false
-                        mapSelection = routeDestination
-                        routeDestination = nil
-                        route = nil
-                        cameraPosition = .userLocation(fallback: .automatic)
+        .safeAreaInset(edge: .bottom) {
+            if routeDisplaying {
+                VStack {
+                    HStack {
+                        Text("ETA: \(formattedETA(route?.expectedTravelTime ?? 0))")
+                        Spacer()
+                        Text("Distance: \(formattedDistance(route?.distance ?? 0))")
                     }
+                    .padding()
+
+                    Button("End Route") {
+                        withAnimation(.snappy) {
+                            routeDisplaying = false
+                            showDetails = true
+                            getDirections = false
+                            mapSelection = routeDestination
+                            routeDestination = nil
+                            route = nil
+                            cameraPosition = .userLocation(fallback: .automatic)
+                        }
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(.red.gradient, in: .rect(cornerRadius: 15))
+                    .padding()
                 }
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-                .background(.red.gradient, in: .rect(cornerRadius: 15))
+                .padding(.vertical, 6)
+                .background(LinearGradient(colors: [.gray, .white], startPoint: .top, endPoint: .bottom), in: .rect(cornerRadius: 15))
                 .padding()
                 .background(.ultraThinMaterial)
             }
         }
+
         .mapControls {
             MapUserLocationButton()
             MapCompass()
@@ -191,6 +206,25 @@ extension MapView{
         }
         
     }
+    
+    func formattedETA(_ timeInterval: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter.string(from: timeInterval) ?? "N/A"
+    }
+
+    func formattedDistance(_ distance: CLLocationDistance) -> String {
+        let measurement = Measurement(value: distance, unit: UnitLength.meters)
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = .naturalScale
+        formatter.unitStyle = .medium
+        
+        formatter.locale = Locale(identifier: "en_CA")
+        
+        return formatter.string(from: measurement)
+    }
+
     
     func fetchRoute(){
         if let mapSelection{
