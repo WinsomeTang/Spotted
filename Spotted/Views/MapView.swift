@@ -109,6 +109,27 @@ struct MapView: View {
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
         }
+        .safeAreaInset(edge: .bottom){
+            if routeDisplaying{
+                Button("End Route"){
+                    withAnimation(.snappy){
+                        routeDisplaying = false
+                        showDetails = true
+                        getDirections = false
+                        mapSelection = routeDestination
+                        routeDestination = nil
+                        route = nil
+                        cameraPosition = .userLocation(fallback: .automatic)
+                    }
+                }
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(.red.gradient, in: .rect(cornerRadius: 15))
+                .padding()
+                .background(.ultraThinMaterial)
+            }
+        }
         .mapControls {
             MapUserLocationButton()
             MapCompass()
