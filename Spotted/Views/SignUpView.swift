@@ -26,6 +26,7 @@ struct SignUpView: View {
                 TextField("Username", text: $username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
+
                     .padding()
                 TextField("Email", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -43,7 +44,7 @@ struct SignUpView: View {
                         TextField("Pet Name", text: $pets[index].petName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
-
+                        
                         Picker("Pet Type", selection: $pets[index].petType) {
                             ForEach(Pet.PetType.allCases, id: \.self) { type in
                                 Text(type.rawValue.capitalized)
@@ -53,15 +54,22 @@ struct SignUpView: View {
                         .padding()
                     }
                 }
-
+                
                 Button("Add Pet") {
                     pets.append(Pet(petName: petName, petType: petType))
                 }
                 .padding()
-
+                
                 Button("Get Started!") {
-                    authViewModel.signUp(username: username, email: email, password: password, pets: pets)
-                    isMapViewActive = true
+                    authViewModel.signUp(username: username, email: email, password: password, pets: pets) { result in
+                        switch result {
+                        case .success:
+                            isMapViewActive = true
+                        case .failure(let error):
+                            // Handle the error, if needed
+                            print("Error signing up: \(error.localizedDescription)")
+                        }
+                    }
                 }
                 .padding()
             } else {

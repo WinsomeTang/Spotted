@@ -13,17 +13,29 @@ class AuthViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var currentUser: PetOwner?
     
-    func signUp(username: String, email: String, password: String, pets: [Pet]) {
+    func signUp(username: String, email: String, password: String, pets: [Pet], completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
-            
+
             if let error = error {
                 self.errorMessage = error.localizedDescription
+                completion(.failure(error))
             } else {
-                // User successfully signed up, now store user and pet info in Firestore
+                // User successfully signed up, now fetch user information and store it in the currentUser
                 print("User signed up successfully:")
                 print("Username: \(username)\nEmail: \(email)\nPassword: \(password)\nPets: \(pets)")
                 self.storeUserInformation(username: username, email: email, password: password, pets: pets)
+                self.fetchUserInformation(email: email) { result in
+                    switch result {
+                    case .success:
+                        print("User information fetched successfully after sign up.")
+                        completion(.success(()))
+                    case .failure(let error):
+                        self.errorMessage = error.localizedDescription
+                        print("Error fetching user information after sign up: \(error)")
+                        completion(.failure(error))
+                    }
+                }
             }
         }
     }
@@ -109,5 +121,16 @@ class AuthViewModel: ObservableObject {
                 }
             }
         }
+    
+    func logout() {
+           do {
+               try Auth.auth().signOut()
+               isLoggedIn = false
+               currentUser = nil
+               print("User logged out successfully.")
+           } catch {
+               print("Error signing out: \(error.localizedDescription)")
+           }
+       }
 }
 
