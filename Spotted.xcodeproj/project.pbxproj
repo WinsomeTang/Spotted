@@ -19,6 +19,14 @@
 		F225CABA2B05466400796623 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB92B05466400796623 /* LogInView.swift */; };
 		F231B6EF2B27E55100CCF2C7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B6EE2B27E55100CCF2C7 /* UserSettings.swift */; };
 		F231B6F12B27EE7600CCF2C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B6F02B27EE7600CCF2C7 /* SettingsView.swift */; };
+		F231B7552B28169200CCF2C7 /* Spotted_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B7542B28169200CCF2C7 /* Spotted_WatchApp.swift */; };
+		F231B7572B28169200CCF2C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B7562B28169200CCF2C7 /* ContentView.swift */; };
+		F231B7592B28169400CCF2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F231B7582B28169400CCF2C7 /* Assets.xcassets */; };
+		F231B75C2B28169400CCF2C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F231B75B2B28169400CCF2C7 /* Preview Assets.xcassets */; };
+		F231B75F2B28169400CCF2C7 /* Spotted_Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F231B7522B28169200CCF2C7 /* Spotted_Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F231B7662B281B1200CCF2C7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B7652B281B1200CCF2C7 /* LocationManager.swift */; };
+		F231B76B2B281CA500CCF2C7 /* SharedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B76A2B281CA500CCF2C7 /* SharedModel.swift */; };
+		F231B76C2B281CA500CCF2C7 /* SharedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B76A2B281CA500CCF2C7 /* SharedModel.swift */; };
 		F807446C2B0E4B5D00599788 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446B2B0E4B5D00599788 /* Landmark.swift */; };
 		F807446E2B0E4B7400599788 /* LandmarkDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */; };
 		F80744702B0E4BAB00599788 /* LocalSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446F2B0E4BAB00599788 /* LocalSearchService.swift */; };
@@ -57,6 +65,16 @@
 		F8EFD8022B11432200AE935E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFD8012B11432200AE935E /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F231B75D2B28169400CCF2C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F21411442B007CC9003090FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F231B7512B28169200CCF2C7;
+			remoteInfo = "Spotted_Watch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		F231B71D2B280D9300CCF2C7 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -64,6 +82,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				F231B75F2B28169400CCF2C7 /* Spotted_Watch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +104,13 @@
 		F225CAB92B05466400796623 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		F231B6EE2B27E55100CCF2C7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F231B6F02B27EE7600CCF2C7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F231B7522B28169200CCF2C7 /* Spotted_Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotted_Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F231B7542B28169200CCF2C7 /* Spotted_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotted_WatchApp.swift; sourceTree = "<group>"; };
+		F231B7562B28169200CCF2C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F231B7582B28169400CCF2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F231B75B2B28169400CCF2C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F231B7652B281B1200CCF2C7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F231B76A2B281CA500CCF2C7 /* SharedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModel.swift; sourceTree = "<group>"; };
 		F807446B2B0E4B5D00599788 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailsView.swift; sourceTree = "<group>"; };
 		F807446F2B0E4BAB00599788 /* LocalSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchService.swift; sourceTree = "<group>"; };
@@ -133,6 +159,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F231B74F2B28169200CCF2C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -158,6 +191,7 @@
 			children = (
 				F209F7A82B0F093F001BC092 /* AuthViewModel.swift */,
 				F85ECB262B0FA779008A1DBB /* LandmarkDetailsModel.swift */,
+				F231B76A2B281CA500CCF2C7 /* SharedModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F214114E2B007CC9003090FB /* Spotted */,
+				F231B7532B28169200CCF2C7 /* Spotted_Watch Watch App */,
 				F214114D2B007CC9003090FB /* Products */,
 				64DA088CB10B3DB0962D29A4 /* Pods */,
 				BA24393C8188A27BBFAEB6DF /* Frameworks */,
@@ -176,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				F214114C2B007CC9003090FB /* Spotted.app */,
+				F231B7522B28169200CCF2C7 /* Spotted_Watch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +257,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F231B7532B28169200CCF2C7 /* Spotted_Watch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				F231B7542B28169200CCF2C7 /* Spotted_WatchApp.swift */,
+				F231B7562B28169200CCF2C7 /* ContentView.swift */,
+				F231B7582B28169400CCF2C7 /* Assets.xcassets */,
+				F231B75A2B28169400CCF2C7 /* Preview Content */,
+				F231B7652B281B1200CCF2C7 /* LocationManager.swift */,
+			);
+			path = "Spotted_Watch Watch App";
+			sourceTree = "<group>";
+		};
+		F231B75A2B28169400CCF2C7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F231B75B2B28169400CCF2C7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		F807446A2B0E4B5100599788 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +312,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F231B75E2B28169400CCF2C7 /* PBXTargetDependency */,
 			);
 			name = Spotted;
 			packageProductDependencies = (
@@ -290,6 +347,23 @@
 			productReference = F214114C2B007CC9003090FB /* Spotted.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F231B7512B28169200CCF2C7 /* Spotted_Watch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F231B7622B28169500CCF2C7 /* Build configuration list for PBXNativeTarget "Spotted_Watch Watch App" */;
+			buildPhases = (
+				F231B74E2B28169200CCF2C7 /* Sources */,
+				F231B74F2B28169200CCF2C7 /* Frameworks */,
+				F231B7502B28169200CCF2C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Spotted_Watch Watch App";
+			productName = "Spotted_Watch Watch App";
+			productReference = F231B7522B28169200CCF2C7 /* Spotted_Watch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -302,6 +376,9 @@
 				TargetAttributes = {
 					F214114B2B007CC9003090FB = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					F231B7512B28169200CCF2C7 = {
+						CreatedOnToolsVersion = 15.1;
 					};
 				};
 			};
@@ -322,6 +399,7 @@
 			projectRoot = "";
 			targets = (
 				F214114B2B007CC9003090FB /* Spotted */,
+				F231B7512B28169200CCF2C7 /* Spotted_Watch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -334,6 +412,15 @@
 				F21411572B007CCE003090FB /* Preview Assets.xcassets in Resources */,
 				F21411542B007CCE003090FB /* Assets.xcassets in Resources */,
 				F225CA942B05362600796623 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F231B7502B28169200CCF2C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F231B75C2B28169400CCF2C7 /* Preview Assets.xcassets in Resources */,
+				F231B7592B28169400CCF2C7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F231B76B2B281CA500CCF2C7 /* SharedModel.swift in Sources */,
 				F85ECB272B0FA779008A1DBB /* LandmarkDetailsModel.swift in Sources */,
 				F225CABA2B05466400796623 /* LogInView.swift in Sources */,
 				F225CAB82B05465500796623 /* SignUpView.swift in Sources */,
@@ -407,7 +495,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F231B74E2B28169200CCF2C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F231B7662B281B1200CCF2C7 /* LocationManager.swift in Sources */,
+				F231B7572B28169200CCF2C7 /* ContentView.swift in Sources */,
+				F231B7552B28169200CCF2C7 /* Spotted_WatchApp.swift in Sources */,
+				F231B76C2B281CA500CCF2C7 /* SharedModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F231B75E2B28169400CCF2C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F231B7512B28169200CCF2C7 /* Spotted_Watch Watch App */;
+			targetProxy = F231B75D2B28169400CCF2C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F21411582B007CCE003090FB /* Debug */ = {
@@ -540,7 +647,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spotted/Preview Content\"";
-				DEVELOPMENT_TEAM = ZXSUZ55397;
+				DEVELOPMENT_TEAM = M46W996KF7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spotted/Info.plist;
@@ -576,7 +683,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spotted/Preview Content\"";
-				DEVELOPMENT_TEAM = ZXSUZ55397;
+				DEVELOPMENT_TEAM = M46W996KF7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Spotted/Info.plist;
@@ -601,6 +708,70 @@
 			};
 			name = Release;
 		};
+		F231B7602B28169500CCF2C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Spotted_Watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = M46W996KF7;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Spotted_Watch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mw.Spotted-deployed";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mw.Spotted-deployed.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		F231B7612B28169500CCF2C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Spotted_Watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = M46W996KF7;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Spotted_Watch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.mw.Spotted-deployed";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mw.Spotted-deployed.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -618,6 +789,15 @@
 			buildConfigurations = (
 				F214115B2B007CCE003090FB /* Debug */,
 				F214115C2B007CCE003090FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F231B7622B28169500CCF2C7 /* Build configuration list for PBXNativeTarget "Spotted_Watch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F231B7602B28169500CCF2C7 /* Debug */,
+				F231B7612B28169500CCF2C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,24 +10,21 @@ import MapKit
 
 struct ExpressView: View {
     @ObservedObject var locationManager = LocationManager()
-    @State private var nearestPetStore: MKMapItem?
-    @State private var nearestPetPark: MKMapItem?
-    @State private var nearestPetClinic: MKMapItem?
-    @State private var nearestPetHospital: MKMapItem?
+    @StateObject var sharedModel = SharedModel()
     @Binding var showMapView: Bool
 
     var body: some View {
         VStack {
-            if let petStore = nearestPetStore {
+            if let petStore = sharedModel.nearestPetStore {
                 PetPlaceRow(name: "Nearest Pet Store:", place: petStore, color: .blue)
             }
-            if let petPark = nearestPetPark {
+            if let petPark = sharedModel.nearestPetPark {
                 PetPlaceRow(name: "Nearest Pet Park:", place: petPark, color: .green)
             }
-            if let petClinic = nearestPetClinic {
+            if let petClinic = sharedModel.nearestPetClinic {
                 PetPlaceRow(name: "Nearest Pet Clinic:", place: petClinic, color: .orange)
             }
-            if let petHospital = nearestPetHospital {
+            if let petHospital = sharedModel.nearestPetHospital {
                 PetPlaceRow(name: "Nearest Pet Hospital:", place: petHospital, color: .red)
             }
 
@@ -59,13 +56,13 @@ struct ExpressView: View {
 
                 switch searchString {
                 case "pet store", "pet food", "animal store", "petsmart", "pet valu":
-                    nearestPetStore = searchResults.mapItems.first
+                    sharedModel.nearestPetStore = searchResults.mapItems.first
                 case "pet park":
-                    nearestPetPark = searchResults.mapItems.first
+                    sharedModel.nearestPetPark = searchResults.mapItems.first
                 case "pet clinic":
-                    nearestPetClinic = searchResults.mapItems.first
+                    sharedModel.nearestPetClinic = searchResults.mapItems.first
                 case "pet emergency 24 hours":
-                    nearestPetHospital = searchResults.mapItems.first
+                    sharedModel.nearestPetHospital = searchResults.mapItems.first
                 default:
                     break
                 }
@@ -75,6 +72,7 @@ struct ExpressView: View {
         }
     }
 }
+
 
 struct PetPlaceRow: View {
     var name: String
