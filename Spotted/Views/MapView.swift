@@ -12,7 +12,7 @@ struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
 //    @EnvironmentObject var localSearchService: LocalSearchService
 //    @State private var selectedLandmark: Landmark?
-    
+//    @EnvironmentObject var authViewModel : AuthViewModel
     var userLatitude: String{
         return "\(locationManager.currentLocation.coordinate.latitude)"
     }
@@ -159,10 +159,11 @@ struct MapView: View {
                     Label("Express", systemImage: "hare")
                 }
             AccountView()
+                
                 .tabItem{
                     Label("Account", systemImage: "person")
                 }
-        }
+            }
     }
 }
 

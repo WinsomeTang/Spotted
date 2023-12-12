@@ -15,6 +15,9 @@ struct LogInView: View {
     @State private var alertMessage = ""
     
     @State private var isMapViewActive = false
+    @State private var isAccountViewActive = false
+    
+
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var authViewModel: AuthViewModel
     
@@ -55,11 +58,14 @@ struct LogInView: View {
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
-            .fullScreenCover(isPresented: $isMapViewActive) {
-                MapView()
-            }
         }
-    }    
+        .fullScreenCover(isPresented: $isMapViewActive) {
+            MapView()
+        }
+//        .fullScreenCover(isPresented: $isAccountViewActive) {
+//            AccountView(currentUser: authViewModel.currentUser)
+//        }
+    }
 }
 
 struct LogInView_Previews: PreviewProvider {
