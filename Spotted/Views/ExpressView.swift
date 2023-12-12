@@ -1,10 +1,9 @@
 //
-//  ActivityView.swift
+//  ExpressView.swift
 //  Spotted
 //
 //  Created by Michael Werbowy on 2023-11-15.
 //
-
 
 import SwiftUI
 import MapKit
@@ -15,24 +14,25 @@ struct ExpressView: View {
     @State private var nearestPetPark: MKMapItem?
     @State private var nearestPetClinic: MKMapItem?
     @State private var nearestPetHospital: MKMapItem?
+    @Binding var showMapView: Bool
 
     var body: some View {
         VStack {
             if let petStore = nearestPetStore {
-                Text("Nearest Pet Store: \(petStore.name ?? "")")
+                PetPlaceRow(name: "Nearest Pet Store:", place: petStore, color: .blue)
             }
             if let petPark = nearestPetPark {
-                Text("Nearest Pet Park: \(petPark.name ?? "")")
+                PetPlaceRow(name: "Nearest Pet Park:", place: petPark, color: .green)
             }
             if let petClinic = nearestPetClinic {
-                Text("Nearest Pet Clinic: \(petClinic.name ?? "")")
+                PetPlaceRow(name: "Nearest Pet Clinic:", place: petClinic, color: .orange)
             }
             if let petHospital = nearestPetHospital {
-                Text("Nearest Pet Hospital: \(petHospital.name ?? "")")
+                PetPlaceRow(name: "Nearest Pet Hospital:", place: petHospital, color: .red)
             }
 
-            Button("Get Directions") {
-                // Implement logic to get directions to the selected location
+            Button("Find Closest in Map") {
+                showMapView = true
             }
             .padding()
             .background(Color.blue)
@@ -76,8 +76,27 @@ struct ExpressView: View {
     }
 }
 
-struct ExpressView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpressView()
+struct PetPlaceRow: View {
+    var name: String
+    var place: MKMapItem
+    var color: Color
+
+    var body: some View {
+        HStack {
+            Text("\(name) \(place.name ?? "")")
+                .foregroundColor(.primary)
+            Spacer()
+            Image(systemName: "location.fill")
+                .foregroundColor(color)
+        }
+        .padding(8)
+        .background(Color.secondary.opacity(0.1))
+        .cornerRadius(8)
     }
 }
+
+//struct ExpressView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ExpressView()
+//    }
+//}

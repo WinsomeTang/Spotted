@@ -10,9 +10,9 @@ import MapKit
 
 struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
-//    @EnvironmentObject var localSearchService: LocalSearchService
-//    @State private var selectedLandmark: Landmark?
-//    @EnvironmentObject var authViewModel : AuthViewModel
+    //    @EnvironmentObject var localSearchService: LocalSearchService
+    //    @State private var selectedLandmark: Landmark?
+    //    @EnvironmentObject var authViewModel : AuthViewModel
     var userLatitude: String{
         return "\(locationManager.currentLocation.coordinate.latitude)"
     }
@@ -35,11 +35,19 @@ struct MapView: View {
     //default cam position
     @State var camera: MapCameraPosition = .automatic
     
+    //nearest placemark filtering
+    @State private var showMapView = false
+    @State private var closestStore: MKMapItem?
+    @State private var closestPark: MKMapItem?
+    @State private var closestClinic: MKMapItem?
+    @State private var closestHospital: MKMapItem?
+    
     var body: some View {
-        TabView{
+        TabView {
             Map(position: $cameraPosition, selection: $mapSelection) {
                 UserAnnotation()
-
+                
+                
                 ForEach(storeResults, id: \.self) { item in
                     if routeDisplaying, item == routeDestination {
                         let placemark = item.placemark
@@ -84,8 +92,7 @@ struct MapView: View {
                             .tint(.red)
                     }
                 }
-
-
+                
                 if let route = route {
                     MapPolyline(route.polyline)
                         .stroke(.blue, lineWidth: 6)
@@ -106,9 +113,9 @@ struct MapView: View {
                 LocationDetailsView(mapSelection: $mapSelection,
                                     show: $showDetails,
                                     getDirections: $getDirections)
-                    .presentationDetents([.height(340)])
-                    .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
-                    .presentationCornerRadius(12)
+                .presentationDetents([.height(340)])
+                .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                .presentationCornerRadius(12)
             }
             .safeAreaInset(edge: .bottom) {
                 if routeDisplaying {
@@ -119,7 +126,7 @@ struct MapView: View {
                             Text("Distance: \(formattedDistance(route?.distance ?? 0))")
                         }
                         .padding()
-
+                        
                         Button("End Route") {
                             withAnimation(.snappy) {
                                 routeDisplaying = false
@@ -145,7 +152,6 @@ struct MapView: View {
                     .background(.ultraThinMaterial)
                 }
             }
-
             .mapControls {
                 MapUserLocationButton()
                 MapCompass()
@@ -154,18 +160,66 @@ struct MapView: View {
             .tabItem {
                 Label("Map", systemImage: "map")
             }
-            ExpressView()
-                .tabItem{
-                    Label("Express", systemImage: "hare")
-                }
+            ExpressView(showMapView: $showMapView)
+            .tabItem {
+                Label("Express", systemImage: "hare")
+            }
             AccountView()
-                
+            
                 .tabItem{
                     Label("Account", systemImage: "person")
                 }
+        }
+        .sheet(isPresented: $showMapView) {
+            Map {
+                UserAnnotation()
+                
+                // Display only the closest store if available
+                if let closestStore = closestStore {
+                    let placemark = closestStore.placemark
+                    Marker(placemark.name ?? "", systemImage: "storefront.fill" ,coordinate: placemark.coordinate)
+                        .tint(.blue)
+                }
+                
+                // Display only the closest park if available
+                if let closestPark = closestPark {
+                    let placemark = closestPark.placemark
+                    Marker(placemark.name ?? "", systemImage: "tree.fill" ,coordinate: placemark.coordinate)
+                        .tint(.green)
+                }
+                
+                // Display only the closest clinic if available
+                if let closestClinic = closestClinic {
+                    let placemark = closestClinic.placemark
+                    Marker(placemark.name ?? "", systemImage: "building.fill" ,coordinate: placemark.coordinate)
+                        .tint(.orange)
+                }
+                
+                // Display only the closest hospital if available
+                if let closestHospital = closestHospital {
+                    let placemark = closestHospital.placemark
+                    Marker(placemark.name ?? "", systemImage: "cross.fill" ,coordinate: placemark.coordinate)
+                        .tint(.red)
+                }
+                
+                // Display the route if available
+                if let route = route {
+                    MapPolyline(route.polyline)
+                        .stroke(.blue, lineWidth: 6)
+                }
             }
+            .onAppear() {
+                Task { await searchPlaces() }
+            }
+            .onChange(of: getDirections) { oldValue, newValue in
+                if newValue {
+                    fetchRoute()
+                }
+            }
+        }
     }
 }
+
 
 extension MapView{
     func searchPlaces() async {
