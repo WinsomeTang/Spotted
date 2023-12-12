@@ -17,6 +17,8 @@
 		F225CA942B05362600796623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F225CA932B05362600796623 /* GoogleService-Info.plist */; };
 		F225CAB82B05465500796623 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB72B05465500796623 /* SignUpView.swift */; };
 		F225CABA2B05466400796623 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CAB92B05466400796623 /* LogInView.swift */; };
+		F231B6EF2B27E55100CCF2C7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B6EE2B27E55100CCF2C7 /* UserSettings.swift */; };
+		F231B6F12B27EE7600CCF2C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B6F02B27EE7600CCF2C7 /* SettingsView.swift */; };
 		F807446C2B0E4B5D00599788 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446B2B0E4B5D00599788 /* Landmark.swift */; };
 		F807446E2B0E4B7400599788 /* LandmarkDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */; };
 		F80744702B0E4BAB00599788 /* LocalSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807446F2B0E4BAB00599788 /* LocalSearchService.swift */; };
@@ -55,6 +57,19 @@
 		F8EFD8022B11432200AE935E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EFD8012B11432200AE935E /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F231B71D2B280D9300CCF2C7 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6604487F0556FB4337D40AAA /* Pods-Spotted.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotted.debug.xcconfig"; path = "Target Support Files/Pods-Spotted/Pods-Spotted.debug.xcconfig"; sourceTree = "<group>"; };
 		72021483D1F6C8EA1CAB9D42 /* Pods-Spotted.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotted.release.xcconfig"; path = "Target Support Files/Pods-Spotted/Pods-Spotted.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +83,8 @@
 		F225CA932B05362600796623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F225CAB72B05465500796623 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		F225CAB92B05466400796623 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		F231B6EE2B27E55100CCF2C7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		F231B6F02B27EE7600CCF2C7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F807446B2B0E4B5D00599788 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailsView.swift; sourceTree = "<group>"; };
 		F807446F2B0E4BAB00599788 /* LocalSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchService.swift; sourceTree = "<group>"; };
@@ -199,6 +216,7 @@
 				F81D774B2B05A888006E1B25 /* ExpressView.swift */,
 				F807446D2B0E4B7400599788 /* LandmarkDetailsView.swift */,
 				F864C9422B1CD4AE0000CB7E /* LocationDetailsView.swift */,
+				F231B6F02B27EE7600CCF2C7 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +226,7 @@
 			children = (
 				F807446B2B0E4B5D00599788 /* Landmark.swift */,
 				F209F7A52B0F08C6001BC092 /* PetOwner.swift */,
+				F231B6EE2B27E55100CCF2C7 /* UserSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -232,6 +251,7 @@
 				F21411492B007CC9003090FB /* Frameworks */,
 				F214114A2B007CC9003090FB /* Resources */,
 				4B73F1BD518525EF2F4B9679 /* [CP] Copy Pods Resources */,
+				F231B71D2B280D9300CCF2C7 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -277,7 +297,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F214114B2B007CC9003090FB = {
@@ -369,6 +389,7 @@
 				F85ECB272B0FA779008A1DBB /* LandmarkDetailsModel.swift in Sources */,
 				F225CABA2B05466400796623 /* LogInView.swift in Sources */,
 				F225CAB82B05465500796623 /* SignUpView.swift in Sources */,
+				F231B6F12B27EE7600CCF2C7 /* SettingsView.swift in Sources */,
 				F8EFD8022B11432200AE935E /* AppDelegate.swift in Sources */,
 				F81D77452B05A557006E1B25 /* LocationManager.swift in Sources */,
 				F807446E2B0E4B7400599788 /* LandmarkDetailsView.swift in Sources */,
@@ -382,6 +403,7 @@
 				F209F7A92B0F093F001BC092 /* AuthViewModel.swift in Sources */,
 				F864C9432B1CD4AE0000CB7E /* LocationDetailsView.swift in Sources */,
 				F21411502B007CC9003090FB /* SpottedApp.swift in Sources */,
+				F231B6EF2B27E55100CCF2C7 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +533,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6604487F0556FB4337D40AAA /* Pods-Spotted.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -546,6 +569,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 72021483D1F6C8EA1CAB9D42 /* Pods-Spotted.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
